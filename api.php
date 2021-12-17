@@ -1,12 +1,12 @@
-<?php 
-    header(Access-Control-Allow-Origin: *);
+
+<?php
+    header("Access-Control-Allow-Origin: *"); 
     //connect to database
     $conn = mysqli_connect('localhost', 'daczecha', 'data123', 'json_saved');
 
 
     //create array for response
     $response = array();
-    
     //check connection
     //
     if($conn){ //if ok generate json
@@ -20,20 +20,56 @@
         while($row = mysqli_fetch_assoc($result)) {//iterates through row by row untill no more rows
 
             $response[$i]['id'] = $row['id'];
+
             $response[$i]['title'] = $row['title'];
             $response[$i]['body'] = $row['body'];
             $response[$i]['userId'] = $row['userId'];
             
             $i++;
         }
-
-        global $json_data;
-        $json_data = json_encode($response,JSON_PRETTY_PRINT);
-
+        
+        $json_data = json_encode($response);
+        echo $json_data;
     }else{//if not show error 
         echo 'Connection error' . mysqli_connect_error();
     }
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <?php
@@ -90,12 +126,5 @@
         }else{
         echo "Cannot sort data by this property.";
         }
-
-
     }
-
 ?>
-
-<pre>
-    <?php echo sortJSON()?>
-</pre>
