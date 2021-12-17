@@ -1,4 +1,5 @@
 <?php 
+    header(Access-Control-Allow-Origin: *);
     //connect to database
     $conn = mysqli_connect('localhost', 'daczecha', 'data123', 'json_saved');
 
